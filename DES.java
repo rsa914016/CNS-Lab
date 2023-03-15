@@ -1,8 +1,7 @@
 package Cryptography;
-
 import java.security.*;
-import javax.crypto.*;
 import java.util.*;
+import javax.crypto.*;
 
 public class DES
 {
