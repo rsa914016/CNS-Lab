@@ -1,5 +1,6 @@
 package Cryptography;
 import java.security.*;
+import java.util.Scanner;
 
 class MD5 {
     public static void main(String[] args) {
@@ -10,27 +11,12 @@ class MD5 {
             System.out.println("   Provider = "+md.getProvider());
             System.out.println("   toString = "+md);
 
-            String input = "";
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Enter Message :");
+            String input = sc.nextLine();
             md.update(input.getBytes());
             byte[] output = md.digest();
-            System.out.println();
-            System.out.println("SHA1(\""+input+"\") =");
-            System.out.println("   "+bytesToHex(output));
-
-            input = "abc";
-            md.update(input.getBytes());
-            output = md.digest();
-            System.out.println();
-            System.out.println("SHA1(\""+input+"\") =");
-            System.out.println("   "+bytesToHex(output));
-
-            input = "Ajay";
-            md.update(input.getBytes());
-            output = md.digest();
-            System.out.println();
-            System.out.println("SHA1(\""+input+"\") =");
-            System.out.println("   "+bytesToHex(output));
-
+            System.out.println("MD5(" + input + ")=" + bytesToHex(output));
         } catch (Exception e) {
             System.out.println("Exception: "+e);
         }
