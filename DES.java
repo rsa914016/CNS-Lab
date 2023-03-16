@@ -7,15 +7,16 @@ import javax.crypto.SecretKey;
 import java.util.Scanner;
 
 
-public class BlowFish {
-    Cipher ecipher,dcipher;
-    BlowFish(SecretKey key) throws Exception {
-        ecipher = Cipher.getInstance("Blowfish");
-        dcipher = Cipher.getInstance("Blowfish");
+class DES {
+    Cipher ecipher, dcipher;
+    DES(SecretKey key) throws Exception {
+        ecipher = Cipher.getInstance("DES");
+        dcipher = Cipher.getInstance("DES");
         ecipher.init(Cipher.ENCRYPT_MODE, key);
         dcipher.init(Cipher.DECRYPT_MODE, key);
     }
-    public String encrypt(String message) throws Exception{
+
+    public String encrypt(String message) throws Exception {
         byte[] byte_message = message.getBytes(StandardCharsets.UTF_8);
         byte[] encrypted = ecipher.doFinal(byte_message);
         return Base64.getEncoder().encodeToString(encrypted);
@@ -27,12 +28,12 @@ public class BlowFish {
         return new String(decrypted, StandardCharsets.UTF_8);
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] argv) throws Exception {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter Message :");
         String message = sc.nextLine();
-        SecretKey key = KeyGenerator.getInstance("Blowfish").generateKey();
-        BlowFish obj = new BlowFish(key);
+        SecretKey key = KeyGenerator.getInstance("DES").generateKey();
+        DES obj = new DES(key);
         String encrypted = obj.encrypt(message);
         System.out.println("Encrypted Message :" + encrypted);
         String decrypted = obj.decrypt(encrypted);
