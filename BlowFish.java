@@ -5,6 +5,7 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import java.util.Scanner;
 
+
 public class BlowFish {
     Cipher ecipher,dcipher;
     BlowFish(SecretKey key) throws Exception {
@@ -13,6 +14,7 @@ public class BlowFish {
         ecipher.init(Cipher.ENCRYPT_MODE, key);
         dcipher.init(Cipher.DECRYPT_MODE, key);
     }
+    
     public String encrypt(String message) throws Exception{
         byte[] byte_message = message.getBytes(StandardCharsets.UTF_8);
         byte[] encrypted = ecipher.doFinal(byte_message);
