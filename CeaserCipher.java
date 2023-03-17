@@ -1,46 +1,45 @@
 import java.util.Scanner;
 
-
 public class CeaserCipher {
-    public static StringBuffer encrypt(String text, int s) {
-        StringBuffer result = new StringBuffer();
-        for (int i=0; i<text.length(); i++) {
-            if (Character.isUpperCase(text.charAt(i))) {
-                char ch = (char)(((int)text.charAt(i) + s - 65) % 26 + 65);
-                result.append(ch);
+    static Scanner sc=new Scanner(System.in);
+    public static String encrypt(String str, int key){
+        StringBuilder encrypted = new StringBuilder();
+        for(int i = 0; i < str.length(); i++) {
+            int c = str.charAt(i);
+            if (Character.isUpperCase(c)) {
+                c = c + (key % 26);
+                if (c > 'Z') c = c - 26;
             }
-            else {
-                char ch = (char)(((int)text.charAt(i) + s - 97) % 26 + 97);
-                result.append(ch);
+            else if (Character.isLowerCase(c)) {
+                c = c + (key % 26);
+                if (c > 'z') c = c - 26;
             }
+            encrypted.append((char) c);
         }
-        return result;
+        return encrypted.toString();
     }
-
-    public static StringBuffer decrypt(String text, int s) {
-        StringBuffer result = new StringBuffer();
-        s = s * -1;
-        for (int i=0; i<text.length(); i++) {
-            if (Character.isUpperCase(text.charAt(i))) {
-                char ch = (char)(((int)text.charAt(i) + s - 65) % 26 + 65);
-                result.append(ch);
+    public static String decrypt(String str, int key){
+        StringBuilder decrypted = new StringBuilder();
+        for(int i = 0; i < str.length(); i++) {
+            int c = str.charAt(i);
+            if (Character.isUpperCase(c)) {
+                c = c - (key % 26);
+                if (c < 'A') c = c + 26;
             }
-            else {
-                char ch = (char)(((int)text.charAt(i) + s - 97) % 26 + 97);
-                result.append(ch);
+            else if (Character.isLowerCase(c)) {
+                c = c - (key % 26);
+                if (c < 'a') c = c + 26;
             }
+            decrypted.append((char) c);
         }
-        return result;
+        return decrypted.toString();
     }
-
-    public static void main(String[] args)
-    {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter Text :");
-        String text = sc.nextLine();
-        System.out.print("Enter Shift :");
-        int s = sc.nextInt();
-        System.out.println("Encrypted: " + encrypt(text, s));
-        System.out.println("Decrypted: " + decrypt((encrypt(text, s).toString()),s));
+    public static void main(String[] args) {
+        System.out.print("Enter Any Message: ");
+        String str = sc.nextLine();
+        System.out.print("Enter the Key: ");
+        int key = sc.nextInt();
+        System.out.println("Encrypted Message :" + encrypt(str,key));
+        System.out.println("Decrypted Message :" + decrypt(encrypt(str,key),key));
     }
 }
