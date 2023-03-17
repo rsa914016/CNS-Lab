@@ -1,4 +1,3 @@
-package Cryptography;
 import java.security.*;
 import java.util.Scanner;
 
