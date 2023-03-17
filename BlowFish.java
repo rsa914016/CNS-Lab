@@ -36,6 +36,6 @@ public class BlowFish {
         String encrypted = obj.encrypt(message);
         System.out.println("Encrypted Message :" + encrypted);
         String decrypted = obj.decrypt(encrypted);
-        System.out.println("DecryptedMessage  :" + decrypted);
+        System.out.println("Decrypted Message :" + decrypted);
     }
 }
