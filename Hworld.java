@@ -9,11 +9,11 @@ public class Hworld {
     Cipher ecipher,dcipher;
     Hworld(String key) throws Exception {
         ecipher = Cipher.getInstance("Blowfish");
-        dcipher = Cipher.getInstance("Blowfish");
+        // dcipher = Cipher.getInstance("Blowfish");
         byte[] KeyData = key.getBytes();
         SecretKeySpec KS = new SecretKeySpec(KeyData, "Blowfish");
         ecipher.init(Cipher.ENCRYPT_MODE, KS);
-        dcipher.init(Cipher.DECRYPT_MODE, KS);
+        // dcipher.init(Cipher.DECRYPT_MODE, KS);
     }
 
     public String encrypt(String message) throws Exception{
